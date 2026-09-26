@@ -1,0 +1,157 @@
+Experiment 01: Elementary Discrete Signals
+
+Q1. Elementary discrete signal ki?
+A. Discrete time-er basic signal, ja alada alada sample diye represent kora hoy.
+
+Q2. Unit sample signal ki?
+A. Delta[n] holo n=0 te 1 ebong onno sob jaygay 0.
+
+Q3. Unit sample n=0 te koto?
+A. 1.
+
+Q4. Unit sample n=0 chara koto?
+A. 0.
+
+Q5. Unit step signal ki?
+A. u[n] holo n>=0 te 1 ebong n<0 te 0.
+
+Q6. Unit step n=0 te koto?
+A. 1.
+
+Q7. Unit step n<0 hole koto?
+A. 0.
+
+Q8. Unit ramp signal ki?
+A. r[n]=n*u[n].
+
+Q9. Unit ramp-er formula ki?
+A. r[n]=n*u[n].
+
+Q10. Negative n-e ramp-er value ki?
+A. 0.
+
+Q11. Positive n-e ramp-er value ki?
+A. n-er value.
+
+Q12. Discrete signal plot-e stem keno?
+A. Karon discrete sample-gulo alada alada kore dekhano hoy.
+
+Q13. NumPy keno use kori?
+A. Numerical calculation ebong array operation-er jonno.
+
+Q14. np.arange ki kore?
+A. Specified range-er moddhe array create kore.
+
+Q15. np.where ki kore?
+A. Condition onujayi value select kore.
+
+Experiment 02: Discrete Sequence
+
+Q16. Experiment 2-te signal ki?
+A. x[n]=2delta[n+2]-delta[n-4].
+
+Q17. n-er range koto?
+A. -7 theke +7.
+
+Q18. delta[n+2] kothay active?
+A. n=-2 te.
+
+Q19. delta[n-4] kothay active?
+A. n=4 te.
+
+Q20. n=-2 te x[n] koto?
+A. 2.
+
+Q21. n=4 te x[n] koto?
+A. -1.
+
+Q22. Onno n-e x[n] koto?
+A. 0.
+
+Q23. delta[n-n0] mane ki?
+A. Impulse n=n0 position-e thake.
+
+Q24. delta[n+2] er position koto?
+A. -2.
+
+Q25. delta[n-4] er position koto?
+A. 4.
+
+Q26. 2delta[n+2] er amplitude koto?
+A. 2.
+
+Q27. Negative impulse-er amplitude koto?
+A. -1.
+
+Q28. Sequence plot-er jonno ki use kori?
+A. plt.stem.
+
+Q29. np.arange(-7,8) keno?
+A. Python-e last value include hoy na, tai +7 pawar jonno 8 deya hoy.
+
+Q30. Experiment 2-te non-zero sample koyti?
+A. Duita.
+
+Experiment 03: Signal Operations
+
+Q31. Signal addition ki?
+A. Corresponding sample-gulo jog kora.
+
+Q32. Signal folding ki?
+A. Time reversal; x[-n].
+
+Q33. Signal shifting ki?
+A. Time axis-e signal-er position change kora.
+
+Q34. x[-n] ki?
+A. Folded signal.
+
+Q35. x[n-n0] ki?
+A. n0 sample delay.
+
+Q36. x[n+n0] ki?
+A. n0 sample advance.
+
+Q37. User-defined function ki?
+A. Nijer proyojon onujayi programmer-er define kora function.
+
+Q38. Experiment 3-te koyti operation?
+A. Tinti: addition, folding, shifting.
+
+Q39. x+h kivabe ber kori?
+A. Same index-er sample-gulo add kori.
+
+Q40. x[::-1] ki kore?
+A. Array reverse kore.
+
+Q41. Folding-e amplitude change hoy?
+A. Na, mainly time order reverse hoy.
+
+Q42. Shifting-e amplitude change hoy?
+A. Na, signal-er position change hoy.
+
+Q43. Shifted index keno alada?
+A. New time position show korar jonno.
+
+Q44. NumPy array keno useful?
+A. Element-wise operation easy kore.
+
+Q45. Signal operation-er main goal ki?
+A. Signal-er basic transformation bujha.
+
+Experiment 04: Convolution
+
+Q46. Convolution ki?
+A. Duita signal combine kore output ber korar operation.
+
+Q47. Discrete convolution formula ki?
+A. y[n]=sum of x[k]h[n-k].
+
+Q48. Output signal-er symbol ki?
+A. y[n].
+
+Q49. Python-e convolution-er function ki?
+A. np.convolve.
+
+Q50. np.convolve ki kore?
+A. Duita sequence-er convolution ber kore.

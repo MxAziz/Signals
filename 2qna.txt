@@ -1,0 +1,217 @@
+Q51. LTI system-e convolution keno important?
+A. Input ebong impulse response diye output ber kora jay.
+
+Q52. x[n] ki?
+A. Input sequence.
+
+Q53. h[n] ki?
+A. Impulse response.
+
+Q54. y[n] ki?
+A. System output.
+
+Q55. Convolution-e ki duita main operation ache?
+A. Multiplication ebong summation.
+
+Q56. x length 4, h length 3 hole output length?
+A. 4+3-1=6.
+
+Q57. Convolution ki discrete signal-e use hoy?
+A. Haan.
+
+Q58. Impulse response ki?
+A. Unit impulse input-er response.
+
+Q59. Convolution-er result plot-e ki use hoy?
+A. Stem plot.
+
+Q60. Convolution-er basic purpose ki?
+A. Duita sequence-er interaction theke output ber kora.
+
+Experiment 05: Sinusoidal Wave
+
+Q61. Sinusoidal signal-er formula ki?
+A. x(t)=A sin(2pi f t+phi).
+
+Q62. A ki?
+A. Amplitude.
+
+Q63. f ki?
+A. Frequency.
+
+Q64. phi ki?
+A. Phase.
+
+Q65. Frequency ki?
+A. Proti second-e cycle-er number.
+
+Q66. 5 Hz mane ki?
+A. Proti second-e 5 cycle.
+
+Q67. 10 Hz mane ki?
+A. Proti second-e 10 cycle.
+
+Q68. 20 Hz mane ki?
+A. Proti second-e 20 cycle.
+
+Q69. Frequency barle ki hoy?
+A. Same time-e beshi cycle hoy.
+
+Q70. Sampling frequency ki?
+A. Proti second-e sample neyar rate.
+
+Q71. Experiment 5-te fs koto?
+A. 1000 Hz.
+
+Q72. Time vector keno lage?
+A. Waveform-er time axis-er jonno.
+
+Q73. np.sin ki kore?
+A. Sine value calculate kore.
+
+Q74. np.pi ki?
+A. Pi constant.
+
+Q75. 2pi f t term-er role ki?
+A. Time-er sathe phase change determine kore.
+
+Experiment 06: DFT and IDFT
+
+Q76. DFT-er full form ki?
+A. Discrete Fourier Transform.
+
+Q77. IDFT-er full form ki?
+A. Inverse Discrete Fourier Transform.
+
+Q78. DFT ki kore?
+A. Time-domain sequence-ke frequency domain-e convert kore.
+
+Q79. IDFT ki kore?
+A. Frequency domain theke time-domain sequence reconstruct kore.
+
+Q80. DFT formula ki?
+A. X[k]=sum x[n] exp(-j2pi kn/N).
+
+Q81. IDFT formula ki?
+A. x[n]=(1/N) sum X[k] exp(j2pi kn/N).
+
+Q82. N ki?
+A. Total sample number.
+
+Q83. n ki?
+A. Sample/time index.
+
+Q84. k ki?
+A. Frequency index.
+
+Q85. DFT result kemon hoy?
+A. Generally complex.
+
+Q86. dtype=complex keno?
+A. Complex DFT value store korar jonno.
+
+Q87. np.exp ki kore?
+A. Exponential calculation kore.
+
+Q88. IDFT-te 1/N keno?
+A. IDFT formula-r normalization factor.
+
+Q89. DFT magnitude kivabe?
+A. np.abs(X) diye.
+
+Q90. Manual loop keno?
+A. DFT formula direct implement ebong bujhar jonno.
+
+Experiment 07: Spectrum
+
+Q91. Spectrum ki?
+A. Signal-er frequency components-er representation.
+
+Q92. Experiment 7-er signal kemon?
+A. Multiple sinusoidal component-er composite signal.
+
+Q93. FFT-er full form ki?
+A. Fast Fourier Transform.
+
+Q94. FFT keno use kori?
+A. Efficiently DFT calculate korte.
+
+Q95. np.fft.fft ki kore?
+A. Signal-er FFT ber kore.
+
+Q96. Magnitude spectrum ki?
+A. Frequency component-er strength dekhay.
+
+Q97. np.abs(X) ki?
+A. Complex result-er magnitude.
+
+Q98. Normalization keno?
+A. Magnitude-ke suitable scale-e anar jonno.
+
+Q99. np.fft.fftfreq ki?
+A. Frequency bins create kore.
+
+Q100. Positive frequency keno?
+A. One-sided spectrum dekhano easy.
+
+Q101. 0.25 constant-er effect ki?
+A. DC component create kore.
+
+Q102. DC component ki?
+A. Zero-frequency component.
+
+Q103. Composite signal ki?
+A. Multiple signal jog kore toiri signal.
+
+Q104. Spectrum ki identify korte help kore?
+A. Signal-er frequency components.
+
+Q105. FFT kon domain-e niye jay?
+A. Frequency domain-e.
+
+Experiment 08: Noise Removal
+
+Q106. Noise ki?
+A. Unwanted signal component.
+
+Q107. Experiment 8-er pure signal frequency?
+A. 440 Hz.
+
+Q108. 440 Hz signal keno?
+A. Clean reference signal hisebe.
+
+Q109. Random noise keno add?
+A. Filtering process demonstrate korte.
+
+Q110. np.random.randn ki?
+A. Random normally distributed values generate kore.
+
+Q111. np.random.seed keno?
+A. Same random result repeatable rakhe.
+
+Q112. Noisy signal kivabe?
+A. Pure signal plus noise.
+
+Q113. DFT-er role ki?
+A. Signal-ke frequency domain-e niye jay.
+
+Q114. High-frequency filtering ki?
+A. Cutoff-er uporer component suppress kora.
+
+Q115. Cutoff frequency ki?
+A. Filtering-er frequency boundary.
+
+Q116. Experiment 8-er cutoff?
+A. 450 Hz.
+
+Q117. Filtered component-er sathe ki kora hoy?
+A. Zero kora hoy.
+
+Q118. IDFT-er role ki?
+A. Filtered signal-ke time domain-e ferot ana.
+
+Q119. np.fft.ifft ki?
+A. Inverse FFT.
+
+Q120. Filtering-er por ki hoy?
+A. Unwanted high-frequency noise kome.
