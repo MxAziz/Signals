@@ -1,0 +1,103 @@
+Theory Notes — Experiments 7–13
+
+-----------------------------------
+EXPERIMENT 07: Spectrum of a Signal
+-----------------------------------
+Experiment Name:
+Finding the spectrum of a composite sinusoidal signal.
+
+Objective:
+To obtain and plot the frequency spectrum of the given signal.
+
+Theory:
+The spectrum shows the frequency components present in a signal.
+Fourier transform or FFT converts a time-domain signal into a frequency-domain representation.
+The magnitude spectrum indicates the strength of each frequency component.
+
+-----------------------------------
+EXPERIMENT 08: Removing Noise from Audio Signal
+-----------------------------------
+Experiment Name:
+Noise removal from a signal using frequency-domain filtering.
+
+Objective:
+To generate a 440 Hz signal, add noise, analyze it using DFT, remove high-frequency noise and reconstruct the signal.
+
+Theory:
+The DFT represents a noisy signal in the frequency domain.
+A high-frequency filter suppresses unwanted components above a selected cutoff frequency.
+The IDFT converts the filtered spectrum back to the time domain.
+
+-----------------------------------
+EXPERIMENT 09: PPG Signal Analysis
+-----------------------------------
+Experiment Name:
+Extraction of systolic peaks, diastolic points and heart rate from a PPG signal.
+
+Objective:
+To analyze a PPG signal and determine important cardiac features and heart rate.
+
+Theory:
+Photoplethysmography (PPG) measures blood-volume changes.
+Systolic peaks are prominent pulses in the PPG waveform.
+Diastolic points occur near the lower portions between successive pulses.
+Heart rate can be estimated from the time interval between consecutive systolic peaks.
+
+-----------------------------------
+EXPERIMENT 10: Power Density Spectrum
+-----------------------------------
+Experiment Name:
+Power Density Spectrum of a square wave.
+
+Objective:
+To generate a square wave and observe its power distribution in the frequency domain.
+
+Theory:
+The power spectrum describes how signal power is distributed over frequency.
+A periodic square wave contains power mainly at its fundamental frequency and odd harmonics.
+FFT can be used to obtain the frequency-domain representation and calculate power.
+
+-----------------------------------
+EXPERIMENT 11: Fourier Series Approximation
+-----------------------------------
+Experiment Name:
+Fourier series approximation of a square wave.
+
+Objective:
+To approximate a square wave using a finite number of Fourier series terms.
+
+Theory:
+A square wave can be represented as:
+x(t) = (4/π)[sin(ω0t) + (1/3)sin(3ω0t) + (1/5)sin(5ω0t) + ...].
+Only odd harmonics are present in this series.
+Adding more harmonics improves the approximation.
+
+-----------------------------------
+EXPERIMENT 12: Amplitude Spectrum
+-----------------------------------
+Experiment Name:
+Amplitude spectrum of a sum of cosine signals and numerical Fourier transform.
+
+Objective:
+To find the amplitude spectrum and approximate the Fourier transform over 0–900 Hz.
+
+Theory:
+A cosine signal produces frequency components at its positive and negative frequencies.
+For the given sum of cosines, the amplitude spectrum contains components at 100, 500 and 700 Hz.
+The Fourier transform can be approximated numerically by evaluating the transform integral over sampled time values.
+
+-----------------------------------
+EXPERIMENT 13: DTFT
+-----------------------------------
+Experiment Name:
+Determination of the DTFT of x[n] = {1, 2, 3, 4, 5}.
+
+Objective:
+To calculate and plot the magnitude, angle, real and imaginary parts of the DTFT.
+
+Theory:
+The DTFT is:
+X(e^jω) = Σ x[n]e^(−jωn).
+It gives a continuous-frequency representation of a discrete-time sequence.
+The DTFT is generally complex and can be represented by magnitude, phase, real and imaginary parts.
+In this experiment, 501 equally spaced frequency points are used from 0 to π.

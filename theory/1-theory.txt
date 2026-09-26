@@ -1,0 +1,85 @@
+Theory Notes — Experiments 1–6
+
+EXPERIMENT 01: Elementary Discrete Signals
+Experiment Name:
+Implementation of Unit Sample, Unit Step and Unit Ramp Signals.
+
+Objective:
+To understand and generate basic elementary discrete-time signals using Python.
+
+Theory:
+The unit sample signal δ[n] is 1 at n = 0 and 0 elsewhere.
+The unit step u[n] is 1 for n >= 0 and 0 for n < 0.
+The unit ramp is r[n] = n u[n].
+These are fundamental building blocks of discrete-time signal processing.
+
+EXPERIMENT 02: Plotting a Discrete Sequence
+-----------------------------------
+Experiment Name:
+Determination and plotting of x[n] = 2δ[n+2] − δ[n−4], −7 <= n <= 7.
+
+Objective:
+To determine and plot a discrete-time sequence using shifted unit impulses.
+
+Theory:
+A shifted impulse δ[n−n0] is 1 at n = n0 and 0 elsewhere.
+Thus, δ[n+2] occurs at n = −2 and δ[n−4] occurs at n = 4.
+The sequence has amplitude 2 at n = −2 and amplitude −1 at n = 4.
+
+EXPERIMENT 03: Signal Operations
+-----------------------------------
+Experiment Name:
+Implementation of signal addition, folding and shifting.
+
+Objective:
+To understand basic operations performed on discrete-time signals.
+
+Theory:
+Signal addition is performed by adding corresponding samples.
+Folding reverses a signal in time and is represented by x[−n].
+Shifting changes the position of a signal along the time axis.
+x[n−n0] represents a delay, while x[n+n0] represents an advance.
+
+-----------------------------------
+EXPERIMENT 04: Convolution of Sequences
+-----------------------------------
+Experiment Name:
+Implementation of convolution operation of discrete sequences.
+
+Objective:
+To calculate and plot the convolution of two discrete-time sequences.
+
+Theory:
+For discrete-time signals:
+y[n] = x[n] * h[n] = Σ x[k]h[n−k].
+Convolution combines two signals and is widely used to determine the output of an LTI system.
+
+-----------------------------------
+EXPERIMENT 05: Sinusoidal Waves
+-----------------------------------
+Experiment Name:
+Generation of sinusoidal waves with different frequencies.
+
+Objective:
+To generate and observe sinusoidal signals of different frequencies.
+
+Theory:
+A sinusoidal signal is represented as x(t) = A sin(2πft + φ).
+A is amplitude, f is frequency and φ is phase.
+Increasing frequency increases the number of cycles in a given time interval.
+
+-----------------------------------
+EXPERIMENT 06: DFT and IDFT
+-----------------------------------
+Experiment Name:
+Implementation of Discrete Fourier Transform and Inverse Discrete Fourier Transform.
+
+Objective:
+To calculate the DFT of a sequence and reconstruct it using IDFT.
+
+Theory:
+The DFT is:
+X[k] = Σ x[n]e^(−j2πkn/N).
+The IDFT is:
+x[n] = (1/N)Σ X[k]e^(j2πkn/N).
+DFT converts a finite discrete-time sequence to the frequency domain, while IDFT reconstructs it.
