@@ -1,0 +1,278 @@
+
+EXPERIMENT 05: SINUSOIDAL WAVE
+------------------------
+
+QUESTION:
+Explain and generate sinusoidal waves with different frequencies using Python.
+
+Question-e ki chawa hoyeche:
+Different frequency-r sinusoidal wave generate kore compare korte hobe.
+
+------------------------------------------------------------
+LINE-BY-LINE EXPLANATION:
+
+import numpy as np
+→ Mathematical calculation-er jonno numpy.
+
+import matplotlib.pyplot as plt
+→ Continuous waveform plot korar jonno matplotlib.
+
+fs = 1000
+→ Sampling frequency 1000 Hz set kora hocche.
+
+t = np.arange(0, 1, 1 / fs)
+→ 0 theke 1 second porjonto time samples create hocche.
+
+f1 = 5
+→ First sinusoid-er frequency 5 Hz.
+
+f2 = 10
+→ Second sinusoid-er frequency 10 Hz.
+
+f3 = 20
+→ Third sinusoid-er frequency 20 Hz.
+
+x1 = np.sin(2 * np.pi * f1 * t)
+→ 5 Hz sine wave generate hocche.
+
+x2 = ...
+→ 10 Hz sine wave generate hocche.
+
+x3 = ...
+→ 20 Hz sine wave generate hocche.
+
+plt.plot(t, x1)
+→ Time-er sathe 5 Hz signal plot kore.
+
+Porer plot-gulo same way-te 10 Hz ebong 20 Hz signal show kore.
+
+Frequency barle same time-er moddhe beshi cycle dekha jay.
+
+
+EXPERIMENT 06: DFT AND IDFT
+--------------------
+
+QUESTION:
+Explain and implement DFT and IDFT using Python.
+
+Question-e ki chawa hoyeche:
+Ekta discrete sequence-er DFT manually calculate korte hobe ebong IDFT diye abar original sequence reconstruct korte hobe.
+
+CODE:
+------------------------------------------------------------
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([1, 2, 3, 4])
+N = len(x)
+
+X = np.zeros(N, dtype=complex)
+
+for k in range(N):
+    for n in range(N):
+        X[k] += x[n] * np.exp(-2j * np.pi * k * n / N)
+
+x_reconstructed = np.zeros(N, dtype=complex)
+
+for n in range(N):
+    for k in range(N):
+        x_reconstructed[n] += X[k] * np.exp(2j * np.pi * k * n / N)
+
+x_reconstructed = x_reconstructed / N
+
+print("Original Sequence:")
+print(x)
+
+print("\nDFT:")
+print(X)
+
+print("\nIDFT:")
+print(np.real_if_close(x_reconstructed))
+
+plt.figure(figsize=(10, 7))
+
+plt.subplot(2, 1, 1)
+plt.stem(np.arange(N), np.abs(X))
+plt.title("Magnitude Spectrum of DFT")
+plt.grid(True)
+
+plt.subplot(2, 1, 2)
+plt.stem(np.arange(N), np.real(x_reconstructed))
+plt.title("Reconstructed Signal using IDFT")
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+import numpy as np
+→ DFT calculation-er jonno numpy.
+
+import matplotlib.pyplot as plt
+→ Result plot korar jonno matplotlib.
+
+x = np.array([1, 2, 3, 4])
+→ Input discrete sequence define kora hocche.
+
+N = len(x)
+→ Sequence-e koyta sample ache seta ber kora hocche.
+
+X = np.zeros(N, dtype=complex)
+→ DFT result rakhar jonno N size-er complex array create hocche.
+
+for k in range(N):
+→ Prottek frequency index k-er jonno loop.
+
+for n in range(N):
+→ Prottek time sample n-er jonno inner loop.
+
+np.exp(-2j * np.pi * k * n / N)
+→ DFT formula-r complex exponential term.
+
+X[k] += ...
+→ Prottek sample-er contribution add kore X[k] calculate hocche.
+
+x_reconstructed = np.zeros(N, dtype=complex)
+→ IDFT result rakhar jonno empty complex array.
+
+for n in range(N):
+→ Prottek reconstructed time sample-er jonno loop.
+
+for k in range(N):
+→ Sob frequency component use kora hocche.
+
+np.exp(2j * np.pi * k * n / N)
+→ IDFT formula-r complex exponential term.
+
+x_reconstructed[n] += ...
+→ Frequency components jog kore reconstructed signal calculate hocche.
+
+x_reconstructed = x_reconstructed / N
+→ IDFT formula-te 1/N factor apply kora hocche.
+
+np.real_if_close(...)
+→ Khub choto numerical imaginary part thakle real value show kore.
+
+np.abs(X)
+→ DFT-er magnitude ber kore.
+
+plt.stem(...)
+→ DFT magnitude ebong reconstructed sequence plot kore.
+
+
+EXPERIMENT 07: SPECTRUM OF A SIGNAL
+------------------------------------
+QUESTION:
+Find the spectrum of:
+x[k] = 0.25 + 2sin(2π5k) + sin(2π12.5k)
+       + 1.5sin(2π20k) + 0.5sin(2π35k)
+
+Question-e ki chawa hoyeche:
+Given composite signal generate kore FFT-er maddhome frequency spectrum ber korte hobe.
+
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+N = 256
+→ Signal-ke 256 sample-e represent kora hocche.
+
+k = np.arange(N)
+→ 0 theke 255 porjonto sample index create hocche.
+
+x = (...)
+→ Question-e deya composite signal-er formula code-e implement kora hocche.
+
+0.25
+→ Signal-er constant/DC component.
+
+2 * np.sin(...)
+→ 5 Hz-related sinusoidal component.
+
+np.fft.fft(x)
+→ Signal-er FFT calculate kore frequency-domain representation ber kore.
+
+np.fft.fftfreq(N)
+→ FFT-er corresponding normalized frequency values create kore.
+
+np.abs(X) / N
+→ FFT-er magnitude calculate kore ebong normalization kore.
+
+positive = freq >= 0
+→ Sudhu positive frequency part select kora hocche.
+
+plt.stem(...)
+→ Frequency spectrum discrete style-e plot kore.
+
+
+EXPERIMENT 08: REMOVING NOISE FROM SIGNAL
+--------------------------------
+QUESTION:
+a) Generate pure 440 Hz sine wave
+b) Add random noise
+c) Apply DFT
+d) Remove noise by high-frequency filtering
+e) Apply IDFT
+
+Question-e ki chawa hoyeche:
+Prothome clean 440 Hz signal banate hobe.
+Tarpor noise add korte hobe.
+FFT diye frequency domain-e niye high-frequency component remove korte hobe.
+Sheshe IDFT diye filtered signal abar time domain-e ante hobe.
+
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+fs = 1000
+→ Sampling frequency 1000 Hz.
+
+duration = 1
+→ Signal-er duration 1 second.
+
+t = np.arange(...)
+→ 1 second-er time samples create kore.
+
+f = 440
+→ Desired sine wave frequency 440 Hz.
+
+pure_signal = np.sin(...)
+→ Pure 440 Hz sine wave generate kore.
+
+np.random.seed(10)
+→ Random noise-er result reproducible rakhe.
+
+noise = 0.5 * np.random.randn(len(t))
+→ Random noise generate kore.
+
+noisy_signal = pure_signal + noise
+→ Pure signal-er sathe noise add kore noisy signal banay.
+
+N = len(noisy_signal)
+→ Total samples count kore.
+
+X = np.fft.fft(noisy_signal)
+→ Noisy signal-ke frequency domain-e niye jay.
+
+frequencies = np.fft.fftfreq(...)
+→ Prottek FFT component-er frequency ber kore.
+
+cutoff = 450
+→ 450 Hz-ke cutoff frequency dhora hocche.
+
+X_filtered = X.copy()
+→ Original FFT copy kore filtering-er jonno alada array banay.
+
+X_filtered[np.abs(frequencies) > cutoff] = 0
+→ Cutoff-er cheye beshi frequency component zero kore.
+→ Eibhabei high-frequency noise remove kora hocche.
+
+filtered_signal = np.fft.ifft(X_filtered)
+→ Filtered spectrum-ke abar time domain-e niye ase.
+
+np.real(...)
+→ Choto numerical imaginary part bad diye real signal ney.
+
+Plot-er 3 ta graph respectively clean signal, noisy signal ebong filtered signal show kore.

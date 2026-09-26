@@ -1,0 +1,316 @@
+
+EXPERIMENT 09: PPG SIGNAL ANALYSIS
+--------------------------------
+QUESTION:
+Extract systolic peaks, diastolic points and heart rate from a PPG signal.
+
+Question-e ki chawa hoyeche:
+PPG signal theke main systolic peak, diastolic point detect korte hobe ebong peak-to-peak interval diye heart rate calculate korte hobe.
+
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+from scipy.signal import find_peaks
+→ SciPy-r find_peaks function import kora hocche peak detect korar jonno.
+
+fs = 100
+→ PPG signal-er sampling frequency 100 Hz.
+
+duration = 10
+→ 10 second-er signal generate kora hocche.
+
+heart_rate = 75
+→ Example PPG signal-er target heart rate 75 BPM.
+
+frequency = heart_rate / 60
+→ BPM-ke Hz-e convert kora hocche.
+
+ppg = (...)
+→ Synthetic PPG waveform create kora hocche.
+
+np.random.seed(10)
+→ Random noise reproducible rakhe.
+
+ppg += ...
+→ PPG signal-er sathe small random noise add hocche.
+
+find_peaks(ppg, ...)
+→ PPG waveform-er local prominent peaks detect kore.
+→ Egulo-ke systolic peaks hisebe use kora hocche.
+
+distance=int(0.5 * fs)
+→ Duita peak-er minimum distance set kora hocche.
+
+prominence=0.1
+→ Sudhu sufficiently prominent peak detect korte help kore.
+
+inverted_ppg = -ppg
+→ Signal ulta kora hocche, jate original low points peak hisebe detect kora jay.
+
+find_peaks(inverted_ppg, ...)
+→ Inverted signal-er peaks ber kore original signal-er diastolic points pawa hocche.
+
+np.diff(peaks)
+→ Consecutive systolic peak-er sample distance ber kore.
+
+ / fs
+→ Sample distance-ke seconds-e convert kore.
+
+np.mean(peak_intervals)
+→ Average peak-to-peak interval ber kore.
+
+60 / average_interval
+→ Seconds per beat theke BPM calculate kore.
+
+round(..., 2)
+→ Heart rate-ke 2 decimal place-e show kore.
+
+plt.plot(...)
+→ PPG waveform plot kore.
+
+plt.plot(t[peaks], ...)
+→ Systolic peak-er location graph-e marker diye show kore.
+
+plt.plot(t[diastolic], ...)
+→ Diastolic point marker diye show kore.
+
+plt.legend()
+→ Graph-er labels show kore.
+
+
+EXPERIMENT 10: POWER DENSITY SPECTRUM
+--------------------------------
+QUESTION:
+Show the Power Density Spectrum of a Square Wave.
+
+Question-e ki chawa hoyeche:
+Square wave generate kore FFT-er maddhome frequency-domain power distribution plot korte hobe.
+
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+from scipy.signal import square
+→ SciPy-r square function import kora hocche square wave generate korar jonno.
+
+fs = 1000
+→ Sampling frequency 1000 Hz.
+
+t = np.arange(...)
+→ Time samples create kora hocche.
+
+f = 10
+→ Square wave-er frequency 10 Hz.
+
+x = square(2 * np.pi * f * t)
+→ 10 Hz square wave generate kore.
+
+X = np.fft.fft(x)
+→ Square wave-er FFT ber kore.
+
+np.abs(X)
+→ FFT-er magnitude ber kore.
+
+np.abs(X) ** 2
+→ Magnitude square kore power-related quantity ber kore.
+
+power = ... / len(X)
+→ Power-ke normalized form-e rakha hocche.
+
+np.fft.fftfreq(...)
+→ FFT-er frequency axis create kore.
+
+positive = freq >= 0
+→ Sudhu positive frequency select kore.
+
+plt.plot(...)
+→ Frequency-er sathe power plot kore.
+
+
+EXPERIMENT 11: FOURIER SERIES APPROXIMATION
+--------------------------------
+QUESTION:
+Generate a Fourier series approximation of a square wave:
+x(t) = 4/pi [sin(w0t) + 1/3 sin(3w0t) + 1/5 sin(5w0t) + ...]
+
+Question-e ki chawa hoyeche:
+Odd harmonics use kore square wave approximate korte hobe.
+
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+import numpy as np
+→ Mathematical calculation-er jonno numpy.
+
+import matplotlib.pyplot as plt
+→ Approximation graph draw korar jonno matplotlib.
+
+t = np.linspace(-np.pi, np.pi, 1000)
+→ -pi theke +pi porjonto 1000 ta equally spaced time point create kore.
+
+w0 = 1
+→ Fundamental angular frequency set kora hocche 1.
+
+N = 10
+→ Maximum harmonic range set kora hocche.
+
+x = np.zeros_like(t)
+→ Sob time point-e initially zero signal create kore.
+
+for n in range(1, N + 1, 2):
+→ 1, 3, 5, 7, 9 er moto odd harmonic niye loop cholbe.
+
+x += (1 / n) * np.sin(n * w0 * t)
+→ Prottek odd harmonic-er contribution signal-er sathe add hocche.
+
+x = (4 / np.pi) * x
+→ Fourier series-er 4/pi factor apply kora hocche.
+
+plt.plot(t, x)
+→ Final Fourier series approximation plot kore.
+
+N barale aro beshi harmonic add hobe ebong square wave-er approximation improve hobe.
+
+
+EXPERIMENT 12: AMPLITUDE SPECTRUM
+--------------------------------
+QUESTION:
+Find the amplitude spectrum of:
+x(t) = cos(2pi100t) + cos(2pi500t) + cos(2pi700t)
+and approximate the Fourier transform integral for 0 <= f <= 900 Hz.
+
+Question-e ki chawa hoyeche:
+Tin ta cosine component niye signal generate korte hobe.
+Tarpor amplitude spectrum ber korte hobe.
+0 theke 900 Hz porjonto numerical Fourier transform-o approximate korte hobe.
+
+
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+fs = 2000
+→ Sampling frequency 2000 Hz set kora hocche.
+
+t = np.arange(0, 1, 1 / fs)
+→ 1 second-er sampled time vector create kora hocche.
+
+x = (...)
+→ Question-e deya 100 Hz, 500 Hz ebong 700 Hz-er cosine signal add kore composite signal banano hocche.
+
+N = len(x)
+→ Total sample number ber kora hocche.
+
+X = np.fft.fft(x)
+→ Signal-er FFT calculate kora hocche.
+
+freq = np.fft.fftfreq(N, 1 / fs)
+→ FFT result-er actual frequency axis create hocche.
+
+positive = (freq >= 0) & (freq <= 900)
+→ 0 theke 900 Hz-er frequency portion select kora hocche.
+
+amplitude = 2 * np.abs(X) / N
+→ FFT magnitude-ke single-sided amplitude spectrum-er jonno scale kora hocche.
+
+f_values = np.linspace(0, 900, 901)
+→ 0 theke 900 Hz porjonto 901 frequency point create kora hocche.
+
+fourier_transform = np.zeros(...)
+→ Numerical Fourier transform store korar jonno complex array.
+
+dt = 1 / fs
+→ Sampling interval calculate kora hocche.
+
+for i, f in enumerate(f_values):
+→ Prottek frequency point-er jonno Fourier integral approximate kora hobe.
+
+np.exp(-2j * np.pi * f * t)
+→ Continuous Fourier transform-er complex exponential term.
+
+np.sum(x * ...)
+→ Sample-gulo jog kore integral-er numerical approximation-er part calculate kore.
+
+* dt
+→ Sampling interval diye multiply kore integral approximation complete kore.
+
+First plot amplitude spectrum show kore.
+Second plot approximate Fourier transform-er magnitude show kore.
+
+
+EXPERIMENT 13: DTFT
+------------------------
+QUESTION:
+Determine DTFT and show magnitude, angle, real and imaginary parts of:
+x[n] = {1, 2, 3, 4, 5}
+at 501 equispaced frequencies in [0, pi].
+
+Question-e ki chawa hoyeche:
+Given sequence-er DTFT calculate korte hobe.
+Tarpor 501 ta frequency point-e magnitude, angle, real part ebong imaginary part plot korte hobe.
+
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+import numpy as np
+→ DTFT-er numerical calculation-er jonno numpy.
+
+import matplotlib.pyplot as plt
+→ DTFT-er different components plot korar jonno matplotlib.
+
+x = np.array([1, 2, 3, 4, 5])
+→ Question-e deya discrete sequence define kora hocche.
+
+n = np.arange(len(x))
+→ Sequence-er sample index [0,1,2,3,4] create hocche.
+
+w = np.linspace(0, np.pi, 501)
+→ 0 theke pi porjonto exactly 501 ta equally spaced frequency point create hocche.
+
+X = np.zeros(len(w), dtype=complex)
+→ Prottek frequency point-er DTFT value rakhar jonno complex array create hocche.
+
+for i in range(len(w)):
+→ 501 ta frequency point-er prottek tar jonno loop cholbe.
+
+x * np.exp(-1j * w[i] * n)
+→ DTFT formula-r x[n]e^(-jwn) part calculate kore.
+
+np.sum(...)
+→ Sob n-er contribution jog kore current frequency-r DTFT value ber kore.
+
+magnitude = np.abs(X)
+→ DTFT-er magnitude ber kore.
+
+phase = np.angle(X)
+→ DTFT-er phase/angle ber kore.
+
+real_part = np.real(X)
+→ DTFT-er real part ber kore.
+
+imaginary_part = np.imag(X)
+→ DTFT-er imaginary part ber kore.
+
+plt.subplot(4, 1, 1)
+→ 4 ta graph-er first graph-er area select kore.
+
+plt.plot(w, magnitude)
+→ Frequency-er sathe magnitude plot kore.
+
+Second plot:
+→ DTFT-er phase/angle show kore.
+
+Third plot:
+→ DTFT-er real part show kore.
+
+Fourth plot:
+→ DTFT-er imaginary part show kore.
+
+plt.tight_layout()
+→ Graph-gulor spacing automatically thik kore.
+
+plt.show()
+→ Sob output graph display kore.

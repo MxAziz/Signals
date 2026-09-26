@@ -1,0 +1,233 @@
+
+EXPERIMENT 01: ELEMENTARY DISCRETE SIGNALS
+------------------------------------------
+
+QUESTION:
+Explain and implement the following elementary discrete signals:
+i) Unit sample sequence
+ii) Unit step signal
+iii) Unit ramp signal
+
+Question-e ki chawa hoyeche:
+Ekhane 3 ta basic discrete signal generate kore plot korte bola hoyeche.
+Unit sample sudhu n=0 te 1 hobe.
+Unit step n>=0 hole 1 hobe.
+Unit ramp n>=0 hole n-er value nibe, ar n<0 hole 0 hobe.
+-------------------------------------------------------------
+LINE-BY-LINE EXPLANATION:
+
+import numpy as np
+→ Numpy numerical calculation korar jonno import kora hocche.
+
+import matplotlib.pyplot as plt
+→ Graph/plot draw korar jonno matplotlib import kora hocche.
+
+n = np.arange(-10, 11)
+→ -10 theke 10 porjonto discrete time index n create hocche.
+
+unit_sample = np.where(n == 0, 1, 0)
+→ Jekhane n=0, sekhane 1; baki sob position-e 0.
+→ Eitai unit sample signal.
+
+unit_step = np.where(n >= 0, 1, 0)
+→ n 0 ba tar cheye boro hole 1, otherwise 0.
+→ Eitai unit step.
+
+unit_ramp = n * unit_step
+→ Ramp signal-er jonno n ke unit step-er sathe multiply kora hocche.
+→ Negative n-er khetre step=0, tai output-o 0.
+
+plt.figure(figsize=(10, 8))
+→ Graph window-er size set kora hocche.
+
+plt.subplot(3, 1, 1)
+→ 3 row-er moddhe first graph-er jayga select hocche.
+
+plt.stem(n, unit_sample)
+→ Unit sample-er discrete graph draw hocche.
+
+plt.title(...)
+→ Graph-er title set hocche.
+
+plt.xlabel("n")
+→ Horizontal axis-er label n.
+
+plt.ylabel(...)
+→ Vertical axis-er label set hocche.
+
+plt.grid(True)
+→ Graph-e grid dekhano hocche.
+
+Porer subplot-gulo same way-te unit step ebong unit ramp plot korche.
+
+plt.tight_layout()
+→ Graph-gulor moddhe spacing automatically thik kore.
+
+plt.show()
+→ Final graph screen-e show kore.
+
+
+EXPERIMENT 02: DISCRETE SEQUENCE
+------------------------------------------
+
+QUESTION:
+Determine and plot:
+x[n] = 2delta[n+2] - delta[n-4], for -7 <= n <= 7.
+
+Question-e ki chawa hoyeche:
+Given formula theke sequence-er prottek n-er value ber kore graph korte hobe.
+delta[n+2] er impulse n=-2 te, ar delta[n-4] er impulse n=4 te.
+
+------------------------------------------------------------
+LINE-BY-LINE EXPLANATION:
+
+import numpy as np
+→ Numerical calculation-er jonno numpy.
+
+import matplotlib.pyplot as plt
+→ Graph draw korar jonno matplotlib.
+
+n = np.arange(-7, 8)
+→ -7 theke +7 porjonto n create hocche.
+→ Python-er arange-er last value include hoy na, tai 8 deya hoyeche.
+
+delta_n_plus_2 = np.where(n == -2, 1, 0)
+→ n=-2 hole impulse-er value 1, baki sob jaygay 0.
+
+delta_n_minus_4 = np.where(n == 4, 1, 0)
+→ n=4 hole impulse-er value 1.
+
+x = 2 * delta_n_plus_2 - delta_n_minus_4
+→ Question-er exact formula apply kora hocche.
+→ n=-2 te value 2 ebong n=4 te value -1 pawa jabe.
+
+print(...)
+→ n ebong x[n]-er numerical value terminal-e dekhay.
+
+plt.stem(n, x)
+→ Discrete sequence-er stem graph draw kore.
+
+plt.show()
+→ Graph display kore.
+
+
+EXPERIMENT 03: SIGNAL OPERATIONS
+------------------------------------------
+
+QUESTION:
+Plot signal operations using user-defined functions:
+i) Addition
+ii) Folding
+iii) Signal shifting
+
+Question-e ki chawa hoyeche:
+Duita discrete signal niye addition korte hobe.
+Ekta signal fold kore x[-n] dekhate hobe.
+Signal shift kore shifted signal plot korte hobe.
+
+------------------------------------------------------------
+
+LINE-BY-LINE EXPLANATION:
+
+import numpy as np
+→ Array ebong numerical operation-er jonno numpy.
+
+import matplotlib.pyplot as plt
+→ Signal plot korar jonno matplotlib.
+
+def add_signals(x, h):
+→ Duita signal add korar user-defined function.
+
+return x + h
+→ Corresponding sample-gulo add kore result return kore.
+
+def fold_signal(x):
+→ Signal folding-er function.
+
+return x[::-1]
+→ Array-ke reverse kore.
+→ Ekhane x[-n]-er discrete representation dekhano hocche.
+
+def shift_signal(x, n, shift):
+→ Signal shifting-er user-defined function.
+→ x hocche signal, n hocche time index, shift hocche kotogulo sample shift hobe.
+
+shifted_n = n + shift
+→ Time-axis-ke shift kora hocche.
+
+return shifted_n, x
+→ Shifted time index ebong signal return korche.
+
+n = np.arange(-5, 6)
+→ -5 theke +5 porjonto index create hocche.
+
+x = np.array(...)
+→ First discrete signal define kora hocche.
+
+h = np.array(...)
+→ Second discrete signal define kora hocche.
+
+addition = add_signals(x, h)
+→ User-defined addition function call hocche.
+
+folded = fold_signal(x)
+→ x signal fold kora hocche.
+
+shifted_n, shifted = shift_signal(x, n, 2)
+→ Signal-ke 2 sample shift kora hocche.
+
+plt.subplot(...)
+→ Prottek operation-er jonno alada graph area.
+
+plt.stem(...)
+→ Discrete signal plot kore.
+
+plt.tight_layout()
+→ Graph-er spacing thik kore.
+
+plt.show()
+→ Sob graph show kore.
+
+
+------------------------------------------
+EXPERIMENT 04: CONVOLUTION
+------------------------------------------
+
+QUESTION:
+Explain and implement convolution operation of sequences.
+
+Question-e ki chawa hoyeche:
+Duita discrete sequence x[n] ebong h[n] niye convolution ber kore plot korte hobe.
+
+------------------------------------------------------------
+LINE-BY-LINE EXPLANATION:
+
+import numpy as np
+→ Array ebong convolution-er calculation-er jonno numpy.
+
+import matplotlib.pyplot as plt
+→ Graph-er jonno matplotlib.
+
+x = np.array([1, 2, 3, 4])
+→ First input sequence x[n] define kora hocche.
+
+h = np.array([1, 1, 1])
+→ Second sequence h[n] define kora hocche.
+
+y = np.convolve(x, h)
+→ Numpy-r built-in convolve function diye x ebong h-er convolution ber hocche.
+
+n = np.arange(len(y))
+→ Output sequence-er jonno appropriate index create hocche.
+
+print(...)
+→ Input ebong output sequence terminal-e dekhay.
+
+plt.stem(...)
+→ Prottek discrete sequence-er graph draw kore.
+
+plt.subplot(3, 1, 3)
+→ Third graph-e convolution result show korbe.
+
+plt.show()
+→ Graph display kore.
